@@ -1,5 +1,5 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { CardsDemo } from "@/components/custom/CardsDemo"
+import { AppSidebar } from "@/components/app-sidebar";
+import { CardsDemo } from "@/components/custom/CardsDemo";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,15 +7,15 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ChartNoAxesGantt, Presentation, ListTodo } from 'lucide-react';
+} from "@/components/ui/sidebar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ChartNoAxesGantt, Presentation, ListTodo } from "lucide-react";
 
 export default function Home() {
   return (
@@ -44,7 +44,7 @@ export default function Home() {
             </Breadcrumb>
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <main className="flex flex-1 flex-col gap-4 p-4 pt-0 ml-8 mt-6">
           <Tabs defaultValue="board" className="w-full">
             <TabsList>
               <TabsTrigger value="board">
@@ -60,14 +60,16 @@ export default function Home() {
                 List
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="board"> 
-              <CardsDemo content="board"/>
+            <TabsContent value="board">
+              <CardsDemo content="board" />
             </TabsContent>
-            <TabsContent value="timeline">Change your timeline here.</TabsContent>
+            <TabsContent value="timeline">
+              Change your timeline here.
+            </TabsContent>
             <TabsContent value="list">Change your password here.</TabsContent>
           </Tabs>
         </main>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }
