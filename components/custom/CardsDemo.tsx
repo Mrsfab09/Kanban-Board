@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -39,7 +41,11 @@ export function CardsDemo({ content }: { content: React.ReactNode }) {
                 </div>
               </CardTitle>
               <CardAction>
-                <Button variant="ghost" size={"icon"}>
+                <Button
+                  variant="ghost"
+                  size={"icon"}
+                  onClick={() => alert("hello")}
+                >
                   <Plus color="grey" />
                 </Button>
               </CardAction>
