@@ -61,7 +61,7 @@ export default function Home() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="board">
-              <CardsDemo content="board" />
+              <CardsDemo />
             </TabsContent>
             <TabsContent value="timeline">
               Change your timeline here.
