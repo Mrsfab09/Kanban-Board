@@ -8,6 +8,7 @@ export function TextareaDemo({
   onChange: (val: string) => void;
 }) {
   return (
+    // Test comment
     <Textarea
       value={value}
       onChange={(e) => onChange(e.target.value)}
