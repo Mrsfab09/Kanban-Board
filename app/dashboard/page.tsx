@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -7,7 +7,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default function Page() {
   return (
@@ -18,9 +18,7 @@ export default function Page() {
           <Button variant="link">Sign Up</Button>
         </CardAction>
       </CardHeader>
-      <CardContent>
-        Content
-      </CardContent>
+      <CardContent>Content</CardContent>
     </Card>
-  )
+  );
 }
