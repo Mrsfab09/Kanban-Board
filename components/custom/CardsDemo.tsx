@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { FolderCheck, ClipboardCheck, CircleCheck } from "lucide-react";
 import { DialogDemo } from "./DialogDemo";
+import { Badge } from "../ui/badge";
 
 // Typy dla kolumn
 type Column = "To Do" | "In Progress" | "Done";
@@ -67,7 +68,7 @@ export function CardsDemo() {
   return (
     <div className="grid auto-rows-min md:grid-cols-3 mt-5 gap-4">
       {data.map((item) => (
-        <Card key={item.title} className="w-full max-w-sm">
+        <Card key={item.title} className="w-full max-w-sm bg-neutral-100">
           <CardHeader>
             <CardTitle>
               <div className="flex items-center gap-3">
@@ -84,10 +85,24 @@ export function CardsDemo() {
           <CardContent className="space-y-4">
             {tasks[item.title].length > 0 ? (
               tasks[item.title].map((task, index) => (
-                <div key={index} className="bg-muted p-3 rounded">
+                <div
+                  key={index}
+                  className="bg-muted p-3 rounded-lg bg-neutral-50 border border-neutral-300"
+                >
                   <h4 className="font-semibold text-sm">{task.name}</h4>
+                  <Badge
+                    style={{
+                      backgroundColor: "var(--test)",
+                    }}
+                  >
+                    {task.tag}
+                  </Badge>
                   <p className="text-xs text-muted-foreground">
-                    {task.tag} — {task.date}
+                    {new Date(task.date).toLocaleDateString("en-US", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
                   </p>
                   <p className="mt-1 text-sm">{task.description}</p>
                 </div>
