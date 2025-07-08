@@ -61,7 +61,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
         <Plus color="grey" />
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <form onSubmit={handleSubmit}>
+        <form>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Add task</DialogTitle>
@@ -98,6 +98,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
                 </Button>
               </DialogClose>
               <Button
+                onClick={handleSubmit}
                 type="submit"
                 style={{ backgroundColor: "var(--chart-1)" }}
               >
