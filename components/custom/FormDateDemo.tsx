@@ -13,15 +13,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-function formatDate(date: Date | undefined) {
-  if (!date) return "";
-  return date.toLocaleDateString("en-US", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-}
-
 export function FormDateDemo({
   value,
   onChange,
@@ -42,7 +33,6 @@ export function FormDateDemo({
       <div className="relative flex gap-2">
         <Input
           id="date"
-          value={formatDate(value)}
           placeholder="June 01, 2025"
           className="bg-background pr-10"
           readOnly
@@ -72,7 +62,7 @@ export function FormDateDemo({
               month={month}
               onMonthChange={setMonth}
               onSelect={(date) => {
-                onChange(date); // 🔧 aktualizujemy rodzica
+                onChange(date);
                 setOpen(false);
               }}
             />
