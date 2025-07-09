@@ -77,7 +77,6 @@ export function CardsDemo() {
               </div>
             </CardTitle>
             <CardAction>
-              {/* Przekazujemy handler do DialogDemo */}
               <DialogDemo onAdd={(task) => handleAdd(item.title, task)} />
             </CardAction>
           </CardHeader>
