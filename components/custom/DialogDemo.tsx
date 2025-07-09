@@ -57,7 +57,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
 
   return (
     <>
-      <Button variant="ghost" size={"icon"} onClick={() => setOpen(true)}>
+      <Button variant="outline" size={"icon"} onClick={() => setOpen(true)}>
         <Plus color="grey" />
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
