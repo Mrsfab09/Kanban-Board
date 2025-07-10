@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormDateDemo } from "@/components/custom/FormDateDemo";
-import { Plus } from "lucide-react";
+import { Plus, CirclePlus } from "lucide-react";
 import { SelectDemo } from "./SelectDemo";
 import { TextareaDemo } from "./TextareaDemo";
 
@@ -37,7 +38,14 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
     e.preventDefault();
 
     if (!name || !selected || !date || !description) {
-      alert("Please fill in all fields");
+      toast("Event has been created", {
+        description: "Sunday, December 03, 2023 at 9:00 AM",
+        position: "top-center",
+        action: {
+          label: "Undo",
+          onClick: () => console.log("Undo"),
+        },
+      });
       return;
     }
 
@@ -57,9 +65,12 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
 
   return (
     <>
-      <Button variant="outline" size={"icon"} onClick={() => setOpen(true)}>
-        <Plus color="grey" />
-      </Button>
+      <CirclePlus
+        color="grey"
+        size={20}
+        onClick={() => setOpen(true)}
+        cursor={"pointer"}
+      />
       <Dialog open={open} onOpenChange={setOpen}>
         <form>
           <DialogContent className="sm:max-w-[425px]">
