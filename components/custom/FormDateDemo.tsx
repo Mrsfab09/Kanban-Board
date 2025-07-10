@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { format } from "date-fns";
 
 export function FormDateDemo({
   value,
@@ -34,6 +35,7 @@ export function FormDateDemo({
         <Input
           id="date"
           placeholder="June 01, 2025"
+          value={value ? format(value, "MMMM dd yyyy") : ""}
           className="bg-background pr-10"
           readOnly
           onClick={() => setOpen(true)}
