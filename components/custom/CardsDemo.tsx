@@ -8,7 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FolderCheck, ClipboardCheck, CircleCheck } from "lucide-react";
+import {
+  FolderCheck,
+  ClipboardCheck,
+  CircleCheck,
+  CalendarDays,
+  CircleDotDashed,
+  CircleDashed,
+} from "lucide-react";
 import { DialogDemo } from "./DialogDemo";
 import { Badge } from "../ui/badge";
 
@@ -49,12 +56,12 @@ export function CardsDemo() {
   // Konfiguracja kolumn
   const data: ColumnData[] = [
     {
-      icon: <FolderCheck size={19} color="oklch(0.556 0 0)" />,
+      icon: <CircleDashed size={19} color="oklch(0.556 0 0)" />,
       title: "To Do",
       description: "Tasks to get started with.",
     },
     {
-      icon: <ClipboardCheck size={19} color="oklch(0.769 0.188 70.08)" />,
+      icon: <CircleDotDashed size={19} color="oklch(0.769 0.188 70.08)" />,
       title: "In Progress",
       description: "Tasks currently in progress.",
     },
@@ -88,22 +95,34 @@ export function CardsDemo() {
                   key={index}
                   className="bg-muted p-3 rounded-lg bg-neutral-50 border border-neutral-300"
                 >
-                  <h4 className="font-semibold text-sm">{task.name}</h4>
-                  <Badge
-                    style={{
-                      backgroundColor: "var(--test)",
-                    }}
-                  >
-                    {task.tag}
-                  </Badge>
-                  <p className="text-xs text-muted-foreground">
-                    {new Date(task.date).toLocaleDateString("en-US", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold text-sm">{task.name}</h4>
+                    <div className="flex items-center gap-1">
+                      <CalendarDays
+                        size={20}
+                        className="text-muted-foreground"
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(task.date).toLocaleDateString("en-US", {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-1 text-sm text-muted-foreground mt-3">
+                    {task.description}
                   </p>
-                  <p className="mt-1 text-sm">{task.description}</p>
+                  <div className="flex justify-end items-center mt-1">
+                    <Badge
+                      style={{
+                        backgroundColor: "var(--test)",
+                      }}
+                    >
+                      {task.tag}
+                    </Badge>
+                  </div>
                 </div>
               ))
             ) : (
