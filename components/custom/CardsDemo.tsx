@@ -9,8 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  FolderCheck,
-  ClipboardCheck,
   CircleCheck,
   CalendarDays,
   CircleDotDashed,
@@ -53,7 +51,6 @@ export function CardsDemo() {
     }));
   };
 
-  // Konfiguracja kolumn
   const data: ColumnData[] = [
     {
       icon: <CircleDashed size={19} color="oklch(0.556 0 0)" />,
@@ -93,7 +90,7 @@ export function CardsDemo() {
               tasks[item.title].map((task, index) => (
                 <div
                   key={index}
-                  className="bg-muted p-3 rounded-lg bg-neutral-50 border border-neutral-300"
+                  className="p-3 rounded-lg bg-neutral-50 border border-neutral-300"
                 >
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold text-sm">{task.name}</h4>
@@ -111,7 +108,7 @@ export function CardsDemo() {
                       </p>
                     </div>
                   </div>
-                  <p className="mt-1 text-sm text-muted-foreground mt-3">
+                  <p className="text-sm text-muted-foreground mt-3">
                     {task.description}
                   </p>
                   <div className="flex justify-end items-center mt-1">
