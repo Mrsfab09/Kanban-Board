@@ -10,6 +10,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { Bug, Plane, PocketKnife } from "lucide-react";
+
 export function SelectDemo({
   value,
   onChange,
@@ -17,6 +19,11 @@ export function SelectDemo({
   value: string;
   onChange: (val: string) => void;
 }) {
+  const tagIcons: Record<string, React.JSX.Element> = {
+    Fix: <PocketKnife className="mr-2 h-4 w-4" />,
+    Deploy: <Plane className="mr-2 h-4 w-4" />,
+    Bug: <Bug className="mr-2 h-4 w-4" />,
+  };
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="w-full">
@@ -25,11 +32,18 @@ export function SelectDemo({
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Tags</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
+          <SelectItem value="Fix">
+            <PocketKnife />
+            Fix
+          </SelectItem>
+          <SelectItem value="Deploy">
+            <Plane />
+            Deploy
+          </SelectItem>
+          <SelectItem value="Bug">
+            <Bug />
+            Bug
+          </SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
