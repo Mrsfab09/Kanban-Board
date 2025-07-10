@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import {
   Folder,
   Forward,
   MoreHorizontal,
-  Trash2,
+  Plus,
   type LucideIcon,
-} from "lucide-react"
+} from "lucide-react";
 
 import {
   DropdownMenu,
@@ -14,7 +14,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -23,25 +23,33 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { AlertDialog } from "./ui/alert-dialog"
-import { AlertDialogDemo } from "./custom/AlertDemo"
-import { DeleteProjectMenuItem } from "./custom/DeleteDialog"
+} from "@/components/ui/sidebar";
+import { DeleteProjectMenuItem } from "./custom/DeleteDialog";
 
 export function NavProjects({
   projects,
 }: {
   projects: {
-    name: string
-    url: string
-    icon: LucideIcon
-  }[]
+    name: string;
+    url: string;
+    icon: LucideIcon;
+  }[];
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
+
+  const handleClick = () => {};
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <div className="flex items-center justify-between mr-3">
+        <SidebarGroupLabel>Projects</SidebarGroupLabel>
+        <Plus
+          size={14}
+          cursor={"pointer"}
+          className="text-muted-foreground"
+          onClick={handleClick}
+        />
+      </div>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
@@ -72,12 +80,13 @@ export function NavProjects({
                   <span>Share Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                  <DeleteProjectMenuItem/>
+                {/* Delete project */}
+                <DeleteProjectMenuItem />
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }
