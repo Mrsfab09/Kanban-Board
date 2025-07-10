@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormDateDemo } from "@/components/custom/FormDateDemo";
-import { Plus, CirclePlus } from "lucide-react";
+import { CirclePlus, CircleCheckBig, OctagonX } from "lucide-react";
 import { SelectDemo } from "./SelectDemo";
 import { TextareaDemo } from "./TextareaDemo";
 
@@ -38,14 +38,15 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
     e.preventDefault();
 
     if (!name || !selected || !date || !description) {
-      toast("Event has been created", {
-        description: "Sunday, December 03, 2023 at 9:00 AM",
-        position: "top-center",
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo"),
-        },
-      });
+      toast(
+        <div className="flex items-center gap-2">
+          <OctagonX size={20} color={"oklch(0.646 0.222 41.116)"} />
+          Complete all data
+        </div>,
+        {
+          position: "top-center",
+        }
+      );
       return;
     }
 
@@ -61,6 +62,17 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
     setDate(undefined);
     setDescription("");
     setOpen(false);
+
+    toast(
+      <div className="flex items-center gap-2">
+        <CircleCheckBig size={20} color={"oklch(0.646 0.222 41.116)"} />
+        Task created
+      </div>,
+      {
+        description: `Your task ${name} has been created`,
+        position: "top-center",
+      }
+    );
   };
 
   return (
@@ -77,7 +89,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
             <DialogHeader>
               <DialogTitle>Add task</DialogTitle>
               <DialogDescription>
-                Add a new task to your list. Click save when you're done.
+                Add a new task to your list. Click save when you&#39;re done.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4">
