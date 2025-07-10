@@ -39,7 +39,12 @@ export function DeleteProjectMenuItem() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Anuluj</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>Usuń</AlertDialogAction>
+          <AlertDialogAction
+            style={{ backgroundColor: "var(--chart-1)" }}
+            onClick={handleDelete}
+          >
+            Usuń
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
