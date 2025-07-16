@@ -14,29 +14,32 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { IconPicker } from "@/components/ui/icon-picker";
+// import { IconPicker } from "@/components/ui/icon-picker";
 
-import * as icons from "lucide-react"; // Importujemy WSZYSTKIE ikony jako obiekt
-
+import * as icons from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { CircleCheckBig, OctagonX, Plus } from "lucide-react";
+
+type IconName = keyof typeof icons;
 
 interface DialogProjectProps {
   openDialog: boolean;
   onOpenChange: (open: boolean) => void;
+  onAddProject: (project: { name: string }) => void;
 }
 
 export function DialogProject({
   openDialog,
   onOpenChange,
+  onAddProject,
 }: DialogProjectProps) {
-  const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
-  const [selectedIcon, setSelectedIcon] = useState<string | undefined>();
+  const [selectedIcon, setSelectedIcon] = useState<IconName | undefined>();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !selectedIcon) {
+    if (!name) {
       toast(
         <div className="flex items-center gap-2">
           <OctagonX size={20} color={"oklch(0.646 0.222 41.116)"} />
@@ -47,13 +50,15 @@ export function DialogProject({
       return;
     }
 
+    onAddProject({ name });
+
     toast(
       <div className="flex items-center gap-2">
-        <CircleCheckBig size={20} color={"oklch(0.646 0.222 41.116)"} />
+        <CircleCheckBig size={20} className="text-[var(--chart-5)]" />
         Project created
       </div>,
       {
-        description: `Your task "${name}" has been created`,
+        description: `Your project "${name}" has been created`,
         position: "top-center",
       }
     );
@@ -61,14 +66,12 @@ export function DialogProject({
     // Reset state
     setName("");
     setSelectedIcon(undefined);
-    setOpen(false);
+    onOpenChange(false);
   };
 
-  const SelectedIcon =
-    selectedIcon &&
-    typeof icons[selectedIcon as keyof typeof icons] === "function"
-      ? icons[selectedIcon as keyof typeof icons]
-      : null;
+  const SelectedIcon = selectedIcon
+    ? (icons[selectedIcon] as LucideIcon)
+    : null;
 
   return (
     <>
@@ -76,10 +79,10 @@ export function DialogProject({
         size={14}
         cursor={"pointer"}
         className="text-muted-foreground"
-        onClick={() => setOpen(true)}
+        onClick={() => onOpenChange(true)}
       />
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+      <Dialog open={openDialog} onOpenChange={onOpenChange}>
+        <DialogContent className="sm:max-w-[425px] max-h-[80vh] overflow-y-auto">
           <form onSubmit={handleSubmit}>
             <DialogHeader>
               <DialogTitle>Add project</DialogTitle>
@@ -89,13 +92,14 @@ export function DialogProject({
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-3">
+                {/*
                 <Label>Choose icon</Label>
-                <IconPicker
+                 <IconPicker
                   value={selectedIcon}
                   onValueChange={setSelectedIcon}
                   searchable
                   triggerPlaceholder="Choose icon"
-                />
+                /> */}
                 {SelectedIcon && (
                   <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                     <SelectedIcon size={20} />
@@ -122,7 +126,7 @@ export function DialogProject({
               </DialogClose>
               <Button
                 type="submit"
-                style={{ backgroundColor: "var(--chart-1)" }}
+                style={{ backgroundColor: "var(--chart-5)" }}
               >
                 Save changes
               </Button>
