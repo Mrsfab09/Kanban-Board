@@ -40,7 +40,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
     if (!name || !selected || !date || !description) {
       toast(
         <div className="flex items-center gap-2">
-          <OctagonX size={20} color={"oklch(0.646 0.222 41.116)"} />
+          <OctagonX size={20} className="text-[var(--chart-5)]" />
           Complete all data
         </div>,
         {
@@ -65,7 +65,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
 
     toast(
       <div className="flex items-center gap-2">
-        <CircleCheckBig size={20} color={"oklch(0.646 0.222 41.116)"} />
+        <CircleCheckBig size={20} className="text-[var(--chart-5)]" />
         Task created
       </div>,
       {
@@ -123,7 +123,7 @@ export function DialogDemo({ onAdd }: { onAdd: (task: Task) => void }) {
               <Button
                 onClick={handleSubmit}
                 type="submit"
-                style={{ backgroundColor: "var(--chart-1)" }}
+                style={{ backgroundColor: "var(--chart-5)" }}
               >
                 Save changes
               </Button>
