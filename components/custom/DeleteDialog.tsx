@@ -24,8 +24,10 @@ export function DeleteProjectMenuItem() {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-          <Trash2 className="text-muted-foreground mr-2 h-4 w-4" />
-          <span className="cursor-pointer">Delete Project</span>
+          <Trash2 className="text-[var(--chart-1)] mr-2 h-4 w-4" />
+          <span className="text-[var(--chart-1)] cursor-pointer">
+            Delete Project
+          </span>
         </DropdownMenuItem>
       </AlertDialogTrigger>
 
