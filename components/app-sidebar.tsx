@@ -6,10 +6,11 @@ import {
   Bot,
   Command,
   Frame,
+  LayoutGrid,
   Map,
   PieChart,
   Settings2,
-  SquareTerminal,
+  Folder,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -24,8 +25,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-// This is sample data.
-const data = {
+// Początkowe dane
+export const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
@@ -40,42 +41,19 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Dashobard",
+      url: "/",
+      icon: LayoutGrid,
       isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
     },
     {
       title: "Models",
       url: "#",
       icon: Bot,
       items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
+        { title: "Genesis", url: "#", isActive: false },
+        { title: "Explorer", url: "#", isActive: false },
+        { title: "Quantum", url: "#", isActive: false },
       ],
     },
     {
@@ -83,22 +61,10 @@ const data = {
       url: "#",
       icon: BookOpen,
       items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
+        { title: "Introduction", url: "#", isActive: false },
+        { title: "Get Started", url: "#", isActive: false },
+        { title: "Tutorials", url: "#", isActive: false },
+        { title: "Changelog", url: "#", isActive: false },
       ],
     },
     {
@@ -106,22 +72,10 @@ const data = {
       url: "#",
       icon: Settings2,
       items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
+        { title: "General", url: "/settings", isActive: false },
+        { title: "Team", url: "#", isActive: false },
+        { title: "Billing", url: "#", isActive: false },
+        { title: "Limits", url: "#", isActive: false },
       ],
     },
   ],
@@ -130,29 +84,49 @@ const data = {
       name: "Design Engineering",
       url: "#",
       icon: Frame,
+      isActive: false,
     },
     {
       name: "Sales & Marketing",
       url: "#",
       icon: PieChart,
+      isActive: false,
     },
     {
       name: "Travel",
       url: "#",
       icon: Map,
+      isActive: false,
     },
   ],
 };
 
+// Domyślna ikona dla nowych projektów
+const DefaultIcon = Folder;
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [projects, setProjects] = React.useState(data.projects);
+
+  const handleAddProject = (project: { name: string }) => {
+    setProjects((prev) => [
+      ...prev,
+      {
+        name: project.name,
+        url: "#",
+        icon: DefaultIcon,
+        isActive: false,
+      },
+    ]);
+  };
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavMain />
+        <NavProjects projects={projects} onAddProject={handleAddProject} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
